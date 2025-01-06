@@ -6,17 +6,24 @@ from pydantic import BaseModel, Field, HttpUrl
 class AdventureBase(BaseModel):
     title: str
     description: str
+
     location: str
     nearest_station: Optional[str] = None
     station_access_info: Optional[str] = None
+    country: str = "France"
+    zip_code: Optional[str] = None
+
     duration: float
+    distance: Optional[float] = None
     difficulty: Annotated[int, Field(ge=1, le=5)]
     suitable_months: List[Annotated[int, Field(ge=1, le=12)]]
     season_notes: Optional[str] = None
+
     budget_level: Annotated[int, Field(ge=1, le=5)]
     indicative_price: Optional[int] = None
     budget_notes: Optional[str] = None
     guide_required: bool = False
+    
     website: Optional[str] = None
 
 class AdventureCreate(AdventureBase):

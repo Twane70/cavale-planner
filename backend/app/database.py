@@ -19,14 +19,11 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 def init_db():
-    from . import models  # Import ici pour éviter les imports circulaires
+    from . import models
     
-    # Drop toutes les tables existantes
     Base.metadata.drop_all(bind=engine)
-    # Recréer toutes les tables
     Base.metadata.create_all(bind=engine)
     
-    # Seeding
     from .seed_data.seeder import seed_database
     db = SessionLocal()
     try:

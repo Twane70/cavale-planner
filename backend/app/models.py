@@ -13,9 +13,12 @@ class Adventure(Base):
     location = Column(String)
     nearest_station = Column(String, nullable=True)
     station_access_info = Column(Text, nullable=True)
+    country = Column(String)
+    zip_code = Column(String, nullable=True)
     
     # Caractéristiques
     duration = Column(Float)  # en jours
+    distance = Column(Float, nullable=True)  # en km
     difficulty = Column(Integer)  # 1-5
     suitable_months = Column(ARRAY(Integer))  # [1,2,3,4] pour Jan-Avril
     season_notes = Column(Text, nullable=True)
